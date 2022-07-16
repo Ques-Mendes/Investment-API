@@ -1,0 +1,73 @@
+DROP SCHEMA IF EXISTS Investments;
+CREATE SCHEMA IF NOT EXISTS Investments;
+
+USE Investments;
+
+CREATE TABLE Users (
+  id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
+  username TEXT NOT NULL,
+  password TEXT NOT NULL
+);
+
+CREATE TABLE Orders (
+  id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
+  userId INTEGER,
+  FOREIGN KEY (userId) REFERENCES Users (id)
+);
+
+CREATE TABLE Stocks (
+  id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
+  name TEXT NOT NULL,
+  quantity INTEGER,
+  cost DECIMAL(5, 2) NOT NULL,
+  orderId INTEGER,
+  FOREIGN KEY (orderId) REFERENCES Orders (id)
+);
+
+SET SQL_SAFE_UPDATES = 0;
+
+INSERT INTO
+  Users (username, password)
+VALUES
+  ("xpto", "12345X");
+  
+INSERT INTO
+  Users (username, password)
+VALUES
+  ("user1", "diamond");
+
+INSERT INTO
+  Users (username, password)
+VALUES
+  ("user2", "gold123");
+
+INSERT INTO
+  Orders (userId)
+VALUES
+  (1);
+
+INSERT INTO
+  Orders (userId)
+VALUES
+  (3);
+  
+INSERT INTO
+  Orders (userId)
+VALUES
+  (2);
+  
+INSERT INTO
+  Stocks (name, quantity, cost, orderId)
+VALUES
+  ("AZUL4", 100, 350.00, 1);
+
+INSERT INTO
+  Stocks (name, quantity, cost, orderId)
+VALUES
+  ("PETR4", 100, 350.00, 2);
+
+INSERT INTO
+  Stocks (name, quantity, cost, orderId)
+VALUES
+  ("VALE4", 100, 350.00, 3);
+  
