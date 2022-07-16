@@ -3,19 +3,19 @@ CREATE SCHEMA IF NOT EXISTS Investments;
 
 USE Investments;
 
-CREATE TABLE Users (
+CREATE TABLE Investments.Users (
   id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
   username TEXT NOT NULL,
   password TEXT NOT NULL
 );
 
-CREATE TABLE Orders (
+CREATE TABLE Investments.Orders (
   id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
   userId INTEGER,
   FOREIGN KEY (userId) REFERENCES Users (id)
 );
 
-CREATE TABLE Stocks (
+CREATE TABLE Investments.Stocks (
   id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
   name TEXT NOT NULL,
   quantity INTEGER,
@@ -27,47 +27,47 @@ CREATE TABLE Stocks (
 SET SQL_SAFE_UPDATES = 0;
 
 INSERT INTO
-  Users (username, password)
+  Investments.Users (username, password)
 VALUES
   ("xpto", "12345X");
   
 INSERT INTO
-  Users (username, password)
+  Investments.Users (username, password)
 VALUES
   ("user1", "diamond");
 
 INSERT INTO
-  Users (username, password)
+  Investments.Users (username, password)
 VALUES
   ("user2", "gold123");
 
 INSERT INTO
-  Orders (userId)
+  Investments.Orders (userId)
 VALUES
   (1);
 
 INSERT INTO
-  Orders (userId)
+  Investments.Orders (userId)
 VALUES
   (3);
   
 INSERT INTO
-  Orders (userId)
+  Investments.Orders (userId)
 VALUES
   (2);
   
 INSERT INTO
-  Stocks (name, quantity, cost, orderId)
+  Investments.Stocks (name, quantity, cost, orderId)
 VALUES
   ("AZUL4", 100, 350.00, 1);
 
 INSERT INTO
-  Stocks (name, quantity, cost, orderId)
+  Investments.Stocks (name, quantity, cost, orderId)
 VALUES
   ("PETR4", 100, 350.00, 2);
 
 INSERT INTO
-  Stocks (name, quantity, cost, orderId)
+  Investments.Stocks (name, quantity, cost, orderId)
 VALUES
   ("VALE4", 100, 350.00, 3);
   
