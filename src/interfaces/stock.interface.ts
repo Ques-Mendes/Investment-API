@@ -1,18 +1,11 @@
 interface IStock {
-  id: number;
-  name: string;
-  quantity: number;
-  cost: number;
-  orderId?: number;
-}
-
-interface IStockById {
-  id: number;
-  quantity: number;
-  cost: number;
+  id?: number; //CodAtivo
+  name: string;  
+  quantity: number; //QtdAtivo
+  cost: number; //Valor
+  orderId: number;
 }
 
 export {
   IStock,
-  IStockById,
 };

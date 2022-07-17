@@ -1,5 +1,7 @@
-import { IStock, IStockById } from "./stock.interface";
+import { IStock } from "./stock.interface";
+import { IUser } from "./user.interface";
+
 export {
   IStock,
-  IStockById,
+  IUser,
 };
