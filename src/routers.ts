@@ -7,5 +7,6 @@ routers.get('/stocks', stocksController.getAllStocks);
 routers.get('/stocks/:id', stocksController.getStockById);
 
 routers.get('/users', usersController.getAllUsers);
+routers.get('/users/:id', usersController.getUserById);
 
 export default routers;
