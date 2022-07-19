@@ -4,6 +4,11 @@ interface IUser {
   password: string;
 }
 
+interface IUserId {
+  id: number,
+}
+
 export {
   IUser,
+  IUserId,
 };

@@ -1,23 +1,33 @@
-interface IOrderUserId {
-  id?: number;
-  userId: number;
-}
+// interface IOrderUserId {
+//   id?: number;
+//   userId: number;
+// }
 
-interface IOrderStockId {
-  stockId: number;
-}
+import { IStock } from "./stock.interface";
+import { IUserId } from "./user.interface";
 
-interface IOrderWithStocks extends IOrderUserId {
-  stocksIds: number[];
-}
+// interface IOrderStockId {
+//   stockId: number;
+// }
 
-interface IOrder extends IOrderUserId, IOrderWithStocks {
-  quantity: number;
-}
+// interface IOrderWithStocks extends IOrderUserId {
+//   stocksIds: number[];
+// }
 
-export {
-  IOrder,
-  IOrderStockId,
-  IOrderUserId,
-  IOrderWithStocks,
-};
+// interface IOrder extends IOrderUserId, IOrderWithStocks {
+//   quantity: number;
+// }
+
+// export {
+//   IOrder,
+//   IOrderStockId,
+//   IOrderUserId,
+//   IOrderWithStocks,
+// };
+
+export default interface IOrder extends IUserId, IStock {
+  // id: number, //codCliente
+  // stocksId: number, //codAtivo
+  // quantity: number, //QtdeAtivo
+  // cost: number, // valor
+}

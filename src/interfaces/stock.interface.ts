@@ -1,9 +1,9 @@
 interface IStock {
-  id?: number; //CodAtivo
-  name: string;  
+  id: number; //CodAtivo
+  // name: string;  
   quantity: number; //QtdAtivo
   cost: number; //Valor
-  orderId: number;
+  // orderId: number;
 }
 
 export {

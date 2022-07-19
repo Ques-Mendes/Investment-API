@@ -10,6 +10,6 @@ routers.get('/stocks/:id', stocksController.getStockById);
 routers.get('/users', usersController.getAllUsers);
 routers.get('/users/:id', usersController.getUserById);
 
-routers.get('/orders', orderController.getOrders);
+routers.get('/orders/:id', orderController.getUserStocks);
 
 export default routers;
