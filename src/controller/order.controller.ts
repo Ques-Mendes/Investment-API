@@ -7,11 +7,7 @@ import ordersService from "../services/orders.service";
 //   return res.status(200).json(ordersWithStocks);
 // };
 const getUserStocks = async (req: Request, res: Response) => {
-  console.log('pa', req.params);
-  
-  const id = parseInt(req.params.id);
-  console.log('controller', id);
-  
+  const id = parseInt(req.params.id);  
   const userWithStocks = await ordersService.getUserStocks(id);
   if (!userWithStocks) {
     throw new HttpException(404, 'Not Found');    

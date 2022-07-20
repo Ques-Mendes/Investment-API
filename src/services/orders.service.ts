@@ -14,9 +14,7 @@ import stockModel from "../models/stock.model";
 //   return ordersWithStocks as IOrderWithStocks[];
 // };
 const getUserStocks = async (id: number): Promise<IOrder[]> => {
-  const orders = await orderModel.getUserStocks(id);
-  console.log('service', orders);
-  
+  const orders = await orderModel.getUserStocks(id);  
   return orders as IOrder[];
 };
 

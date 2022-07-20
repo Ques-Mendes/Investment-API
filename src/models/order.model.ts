@@ -19,10 +19,14 @@ import connection from "./connection";
 // };
 const getUserStocks = async (id: number):Promise<IOrder[]> => {
   const [orders] = await connection.execute(`  
-  SELECT * FROM Investments.Orders
-  WHERE userId = ?`, [id]);
-  console.log('model', orders);
-  
+  SELECT o.userId AS userId,
+s.id AS stocksId,
+o.quantity AS quantity,
+s.cost AS cost
+FROM Investments.Orders AS o
+INNER JOIN Investments.Stocks AS s
+ON o.stocksId = s.id
+WHERE o.userId = 2;`, [id]);  
   return orders as IOrder[];
 }
 
