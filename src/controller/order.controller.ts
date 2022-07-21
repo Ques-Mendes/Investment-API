@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import HttpException from "../helpers/http.exception";
-import { IInvestment } from "../interfaces";
 import ordersService from "../services/orders.service";
+import 'express-async-errors';
 
 // const getOrders = async (req: Request, res: Response) => {
 //   const ordersWithStocks = await ordersService.getOrders();
@@ -16,13 +16,13 @@ const getUserStocks = async (req: Request, res: Response) => {
   return res.status(200).json(userWithStocks);
 };
 
-const createOrder = async (req: Request, res: Response) => {
-  
-  console.log('OController', req.body);
-  
+const createOrder = async (req: Request, res: Response) => {  
   const order = req.body 
-  const orderCreated = await ordersService.createOrder(order);
-  return res.status(200).json(orderCreated);
+  const orderCreated = await ordersService.createOrder(order);  
+  // if (!orderCreated.affectedRows) {
+  //   throw new HttpException(400, 'Bad Request!');    
+  // }
+  return res.status(201).json(orderCreated);
 };
 
 export default {

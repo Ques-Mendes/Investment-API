@@ -1,7 +1,7 @@
 import { IInvestment, IOrder } from "../interfaces";
 
 import orderModel from "../models/order.model";
-import userModel from "../models/user.model";
+import stockModel from "../models/stock.model";
 // import stockModel from "../models/stock.model";
 
 // const getOrders = async (): Promise<IOrderWithStocks[]> => {
@@ -19,13 +19,17 @@ const getUserStocks = async (id: number): Promise<IOrder[]> => {
   return orders as IOrder[];
 };
 
-const createOrder = async (order: IInvestment) => {
-  console.log('OService', order);
+// const createOrder = async (order: IInvestment) => {  
+//   // const { userId, stocksId, quantity } = order
+//   const orderCreated = await orderModel.createOrder(order);    
+//   return orderCreated;
+// }
+
+const createOrder = async (order: IInvestment) => {  
+  // const stockId = await stockModel.getStockById()
+  // console.log('stockId', stockId);
   
-  const { userId, stocksId, quantity } = order
-  const orderCreated = await orderModel.createOrder(order); 
-  console.log('orderCreatedSrvice', orderCreated);
-   
+  const orderCreated = await orderModel.createOrder(order);    
   return orderCreated;
 }
 
@@ -35,3 +39,9 @@ export default {
   createOrder,
 };
 
+// const create = async (orderInfo: IOrderInfo) => {
+  // const { productsIds, userId } = orderInfo;
+  // const orderId = await OrderModel.create(userId);
+  // await Promise.all(productsIds.map((productId) => ProductModel.update(productId, orderId)));
+// };
+// 
