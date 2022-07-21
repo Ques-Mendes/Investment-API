@@ -1,5 +1,5 @@
 import { IStock } from "../interfaces/stock.interface";
-import stockModel from "../models/stock.model";
+import stockModel from "../models/stocks.model";
 
 const getAllStocks = (): Promise<IStock[]> => stockModel.getAllStocks();
 

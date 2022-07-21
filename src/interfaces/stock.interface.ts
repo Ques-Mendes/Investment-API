@@ -1,11 +1,13 @@
-interface IStock {
-  id: number; //CodAtivo
+interface IStock extends IStockWithoutC { 
+  cost: number;
+}
+interface IStockWithoutC {
+   id: number; //CodAtivo
   // name: string;  
   quantity: number; //QtdAtivo
-  cost: number; //Valor
-  // orderId: number;
 }
 
 export {
   IStock,
+  IStockWithoutC,
 };

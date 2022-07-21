@@ -1,5 +1,7 @@
 // import { IOrderStockId, IOrderUserId } from "../interfaces";
-import IOrder from "../interfaces/order.interface";
+import { ResultSetHeader } from "mysql2";
+import { IInvest, IInvestment } from "../interfaces";
+import { IOrder } from "../interfaces/order.interface";
 import connection from "./connection";
 
 // const getAllOrders = async (): Promise<IOrderUserId[]> => {
@@ -26,13 +28,22 @@ s.cost AS cost
 FROM Investments.Orders AS o
 INNER JOIN Investments.Stocks AS s
 ON o.stocksId = s.id
-WHERE o.userId = 2;`, [id]);  
+WHERE o.userId = ?;`, [id]);  
   return orders as IOrder[];
 }
 
+const createOrder = async (order: IInvest): Promise<ResultSetHeader> => { 
+  const { userId, stocksId, quantity } = order;
+  const [orderCreated] = await connection.execute<ResultSetHeader>(`
+  INSERT INTO Investments.Orders (userId, stocksId, quantity) VALUES (?, ?, ?)`,
+  [userId, stocksId, quantity]
+  );
+  return orderCreated;  
+}
 
 export default {
   // getAllOrders,
   // getStocksIds,
   getUserStocks,
+  createOrder,
 };

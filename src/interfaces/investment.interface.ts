@@ -1,9 +1,10 @@
-interface IInvestment {
-  codClient: number;
-  codStock: number;
-  qtdeStock: number;
+export interface IInvest {
+  userId: number;
+  stocksId: number;
+  quantity: number;
 }
 
-export {
-  IInvestment,
-};
+export interface IInvestment extends IInvest {
+  id: number;  
+}
+  

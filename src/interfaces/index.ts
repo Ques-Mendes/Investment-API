@@ -1,10 +1,11 @@
-import { IStock } from "./stock.interface";
+import { IStock, IStockWithoutC } from "./stock.interface";
 import { IUser, IUserId } from "./user.interface";
-import IOrder from "./order.interface";
-import { IInvestment } from "./investment.interface";
+import { IOrder }from "./order.interface";
+import { IInvestment, IInvest } from "./investment.interface";
 
 export {
   IStock,
+  IStockWithoutC,
   IUser,
   IUserId,
   IOrder,
@@ -12,4 +13,5 @@ export {
   // IOrderUserId,
   // IOrderWithStocks,
   IInvestment,
+  IInvest,
 };
