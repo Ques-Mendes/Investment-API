@@ -15,6 +15,7 @@ routers.get('/stocks', stocksController.getAllStocks);
 routers.get('/stocks/:id', stocksController.getStockById);
 
 routers.post('/orders/buy', orderValidaton, orderController.createNewOrder);
+routers.post('/orders/sell', orderValidaton, orderController.sellOrder);
 
 
 export default routers;

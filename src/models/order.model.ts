@@ -60,11 +60,32 @@ const updateOrder = async (order: IInvest): Promise<ResultSetHeader> => {
   return orderUpdated;
 }
 
+const updateUserStock = async (order: IInvest): Promise<ResultSetHeader> => {
+  const { userId, stocksId, quantity } = order;
+  const [orderUpdated] = await connection.execute<ResultSetHeader>(
+    `UPDATE Orders SET  quantity = quantity- ? WHERE userId=? AND stocksId=?`,
+    [quantity, userId, stocksId]
+  );
+  return orderUpdated;
+}
+
+const getOrderToSell = async (order: IInvest): Promise<number> => {
+  const { userId, stocksId } = order;
+  const [[{quantity}]] = await connection.execute<RowDataPacket[]>(
+    `SELECT quantity FROM Orders
+    WHERE stocksId = ? AND userId = ?`,
+    [stocksId, userId]
+  );
+  return quantity;
+};
+
 export default {
   // getAllOrders,
   // getStocksIds,
   getUserStocks,
   createOrder,
   updateOrder,
-  isOrder
-};
+  isOrder,
+  updateUserStock,
+  getOrderToSell,
+}

@@ -12,10 +12,9 @@ const getUserStocks = async (id: number): Promise<IOrder[]> => {
 
 const isAvaiable = async (stock: IStockWithoutC) => {
   const { stocksId, quantity } = stock; 
-  const stockIsAvaiable = await stocksService.getStockById(stocksId)
-  stockIsAvaiable;  
+  const stockIsAvaiable = await stocksService.getStockById(stocksId); 
   if (stockIsAvaiable.quantity < quantity) {
-    throw new HttpException(400, 'Insufficient avaiable stock!' );
+    throw new HttpException(400, 'Insufficient avaiable stock to buy!' );
   }
   return [stockIsAvaiable.quantity, stockIsAvaiable.cost]
 }; 
@@ -34,10 +33,24 @@ const newOrder = async (order: IInvestment) => {
   return {...order, message: 'Successfully done'} as IInvestmentReturn;
 }
 
+const isQuantity = async (order: IInvest) => {
+  const { quantity } = order;
+  const stockIsAvaiable = await orderModel.getOrderToSell(order)   
+  if (stockIsAvaiable < quantity) {
+     throw new HttpException(400, 'You have insufficient stock to sell!' );
+  }
+  return [stockIsAvaiable];
+}
+
+const sellOrder = async (order: IInvestment) => {
+  await isQuantity(order);
+  // await stockModel.updateStock({ stocksId, quantity }); ? Don't know who is buying the stock ?
+  await orderModel.updateUserStock(order); 
+  return {...order, message: 'Successfully sold!!'} as IInvestmentReturn;
+};
 
 export default {
-  // getOrders,
   getUserStocks,
   newOrder,
-
+  sellOrder,
 };

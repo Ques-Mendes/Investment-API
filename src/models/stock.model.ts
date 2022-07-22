@@ -26,7 +26,7 @@ const updateStock = async (stock: IStockWithoutC): Promise<ResultSetHeader> => {
     [quantity, stocksId]
   );
   return stockUpdated;
-} 
+}
 
 export default {
   getAllStocks,

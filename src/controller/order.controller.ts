@@ -3,10 +3,6 @@ import HttpException from "../helpers/http.exception";
 import ordersService from "../services/orders.service";
 import 'express-async-errors';
 
-// const getOrders = async (req: Request, res: Response) => {
-//   const ordersWithStocks = await ordersService.getOrders();
-//   return res.status(200).json(ordersWithStocks);
-// };
 const getUserStocks = async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);  
   const userWithStocks = await ordersService.getUserStocks(id);
@@ -22,8 +18,14 @@ const createNewOrder = async (req: Request, res: Response) => {
   return res.status(201).json(orderCreated);
 };
 
+const sellOrder = async (req: Request, res: Response) => {
+  const orderToSell = req.body;
+  const orderSold = await ordersService.sellOrder(orderToSell);
+  return res.status(200).json(orderSold);
+};
+
 export default {
-  // getOrders,
   getUserStocks,
   createNewOrder,
+  sellOrder,
 };
