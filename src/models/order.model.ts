@@ -1,6 +1,6 @@
 // import { IOrderStockId, IOrderUserId } from "../interfaces";
 import { ResultSetHeader, RowDataPacket } from "mysql2";
-import { IInvest, IInvestment } from "../interfaces";
+import { IInvest, IInvestment, IStock, IStockWithoutC } from "../interfaces";
 import { IOrder } from "../interfaces/order.interface";
 import connection from "./connection";
 
