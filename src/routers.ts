@@ -6,13 +6,15 @@ import orderValidaton from "./middlewares/order.validation";
 
 const routers = Router();
 
-routers.get('/stocks', stocksController.getAllStocks);
+routers.post('/users', usersController.newUser);
 routers.get('/users', usersController.getAllUsers);
 routers.get('/users/:id', usersController.getUserById);
-
-routers.get('/stocks/:id', stocksController.getStockById);
 routers.get('/user/orders/:id', orderController.getUserStocks);
 
+routers.get('/stocks', stocksController.getAllStocks);
+routers.get('/stocks/:id', stocksController.getStockById);
+
 routers.post('/orders/buy', orderValidaton, orderController.createNewOrder);
+
 
 export default routers;

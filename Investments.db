@@ -5,7 +5,7 @@ USE Investments;
 
 CREATE TABLE Users (
   id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
-  username TEXT NOT NULL,
+  email TEXT NOT NULL,
   password TEXT NOT NULL
 );
 
@@ -30,19 +30,19 @@ CREATE TABLE Orders (
 SET SQL_SAFE_UPDATES = 0;
 
 INSERT INTO
-  Users (username, password)
+  Users (email, password)
 VALUES
-  ("xpto", "12345X");
+  ("xpto@gml.com", "12345X");
   
 INSERT INTO
-  Users (username, password)
+  Users (email, password)
 VALUES
-  ("user1", "diamond");
+  ("user1@gmail.com", "diamond");
 
 INSERT INTO
-  Users (username, password)
+  Users (email, password)
 VALUES
-  ("user2", "gold123");
+  ("user2@gmail.com", "gold123");
   
 INSERT INTO
   Stocks (quantity, cost)

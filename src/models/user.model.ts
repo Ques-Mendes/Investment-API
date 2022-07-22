@@ -1,5 +1,14 @@
+import { ResultSetHeader } from "mysql2";
 import { IUser } from "../interfaces";
 import connection from "./connection";
+
+const createUser = async (user: IUser): Promise<ResultSetHeader> => {
+  const [result] = await connection.execute<ResultSetHeader>(
+    'INSERT INTO Users (email, password) VALUES (?, ?)',
+    [user.email, user.password],
+  );
+  return result;
+};
 
 const getAllUsers = async (): Promise<IUser[]> => {
   const [rows] = await connection.execute(
@@ -18,6 +27,7 @@ const getUserById = async (id: number): Promise<IUser> => {
 }
 
 export default {
+  createUser,
   getAllUsers,
   getUserById,
 };
