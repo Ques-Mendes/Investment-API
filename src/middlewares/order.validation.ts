@@ -9,9 +9,7 @@ const orderDTO = Joi.object().keys({
 
 const orderValidaton = async (req: Request, res: Response, next: NextFunction) => {
    
-  const { error } = orderDTO.validate(req.body, { abortEarly: false });
-  console.log('error', error); // Undefined
-  
+  const { error } = orderDTO.validate(req.body, { abortEarly: false });  
   if (!error) return next();
   if (error.details[0].message) {
     return res.status(400).json({ message: 'Bad Request!' });

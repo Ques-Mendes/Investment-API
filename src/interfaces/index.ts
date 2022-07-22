@@ -1,7 +1,7 @@
 import { IStock, IStockWithoutC } from "./stock.interface";
 import { IUser, IUserId } from "./user.interface";
 import { IOrder }from "./order.interface";
-import { IInvestment, IInvest } from "./investment.interface";
+import { IInvestment, IInvest, IInvestmentReturn } from "./investment.interface";
 
 export {
   IStock,
@@ -14,4 +14,5 @@ export {
   // IOrderWithStocks,
   IInvestment,
   IInvest,
+  IInvestmentReturn,
 };

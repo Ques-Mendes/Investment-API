@@ -16,17 +16,14 @@ const getUserStocks = async (req: Request, res: Response) => {
   return res.status(200).json(userWithStocks);
 };
 
-const createOrder = async (req: Request, res: Response) => {  
-  const order = req.body 
-  const orderCreated = await ordersService.createOrder(order);  
-  // if (!orderCreated.affectedRows) {
-  //   throw new HttpException(400, 'Bad Request!');    
-  // }
+const createNewOrder = async (req: Request, res: Response) => {  
+  const order = req.body     
+  const orderCreated = await ordersService.newOrder(order);
   return res.status(201).json(orderCreated);
 };
 
 export default {
   // getOrders,
   getUserStocks,
-  createOrder,
+  createNewOrder,
 };

@@ -4,14 +4,14 @@ import connection from "./connection";
 
 const getAllStocks = async (): Promise<IStock[]> => {
   const [rows] = await connection.execute(
-    'SELECT * FROM Investments.Stocks',
+    'SELECT * FROM Stocks',
   );
   return rows as IStock[];
 };
 
 const getStockById = async (id: number): Promise<IStock> => {
   const result = await connection.execute(
-    'SELECT * FROM Investments.Stocks WHERE id=?', [id]
+    'SELECT * FROM Stocks WHERE id=?', [id]
   );
   const [rows] = result;  
   const [stock] = rows as IStock[];  

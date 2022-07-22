@@ -7,4 +7,8 @@ export interface IInvest {
 export interface IInvestment extends IInvest {
   id: number;  
 }
+
+export interface IInvestmentReturn extends  IInvestment{
+  message: string;
+}
   

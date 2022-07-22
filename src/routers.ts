@@ -1,5 +1,4 @@
 import Router from "express";
-// import * as buyingController from "./controller/buying.controller";
 import orderController from "./controller/order.controller";
 import stocksController from "./controller/stocks.controller";
 import usersController from "./controller/users.controller";
@@ -14,6 +13,6 @@ routers.get('/users/:id', usersController.getUserById);
 routers.get('/stocks/:id', stocksController.getStockById);
 routers.get('/user/orders/:id', orderController.getUserStocks);
 
-routers.post('/orders/buy', orderValidaton, orderController.createOrder);
+routers.post('/orders/buy', orderValidaton, orderController.createNewOrder);
 
 export default routers;

@@ -3,14 +3,14 @@ import connection from "./connection";
 
 const getAllUsers = async (): Promise<IUser[]> => {
   const [rows] = await connection.execute(
-    'SELECT * FROM Investments.Users',
+    'SELECT * FROM Users',
   );
   return rows as IUser[];
 };
 
 const getUserById = async (id: number): Promise<IUser> => {
   const result = await connection.execute(
-    'SELECT * FROM Investments.Users WHERE id=?', [id]
+    'SELECT * FROM Users WHERE id=?', [id]
   );
   const [rows] = result;
   const [user] = rows as IUser[];
