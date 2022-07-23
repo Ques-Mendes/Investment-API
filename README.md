@@ -140,7 +140,7 @@ VALUES
 
 # Contrato dos Serviços
 
-## Requisições para investimento
+## Requisições para comprar investimento
 
 - O endpoint é acessível através do caminho (`/orders/buy`)
 
@@ -170,3 +170,37 @@ VALUES
 ```
 
 </details>
+
+## Requisições para vender investimentos
+
+- O endpoint é acessível através do caminho (`/orders/sell`)
+
+<details>
+<summary>O resultado retornado deverá ser conforme abaixo:</summary>
+
+<br>
+  
+  - Caso os dados sejam enviados corretamente:
+  - _status http_ `200`
+```json
+{
+  "userId": 1,
+  "stocksId": 3,
+  "quantity": 10,
+  "message": "Successfully sold"
+}
+  
+```
+  
+  - Caso a quantidade de ativo a ser vendida seja maior que a quantidade disponível na carteira:
+  - _status http_  `400`
+```json 
+{
+  "message": "You have insufficient stock to sell!"
+}
+  
+```
+  
+<br>
+  
+  
