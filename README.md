@@ -144,6 +144,7 @@ VALUES
 
 - O endpoint é acessível através do caminho (`/orders/buy`)
 
+<details>
 <summary>O resultado retornado deverá ser conforme abaixo:</summary>
 
 <br>
@@ -165,4 +166,7 @@ VALUES
 {
   "message": "Insufficient avaiable stock to buy!"
 }
+
 ```
+
+</details>
