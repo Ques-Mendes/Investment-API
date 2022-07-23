@@ -25,7 +25,7 @@ const isBalance = async (deposit: IAccount) => {
   const { id, value } = deposit;
   const totalBalance = await userModel.getUserById(id);  
   if (totalBalance.balance < value) {
-    throw new HttpException(400, 'You have insufficient balance to withdraw for!' );
+    throw new HttpException(400, 'You have insufficient balance to withdraw from!' );
   }
   return [totalBalance];
 };

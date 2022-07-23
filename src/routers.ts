@@ -2,7 +2,7 @@ import Router from "express";
 import orderController from "./controller/order.controller";
 import stocksController from "./controller/stocks.controller";
 import usersController from "./controller/users.controller";
-import transactionValidation from "./middlewares/accountBalance.validation";
+import transactionValidation from "./middlewares/transaction.validation";
 import orderValidaton from "./middlewares/order.validation";
 
 const routers = Router();
