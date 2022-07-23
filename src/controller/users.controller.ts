@@ -25,8 +25,15 @@ const getUserById = async (req: Request, res: Response) => {
   return res.status(200).json(user);
 };
 
+const updateUserBalance = async (req: Request, res: Response) => {  
+  const balanceToUpdate = req.body;
+  const balanceUpdated = await usersService.balanceUpdate(balanceToUpdate);
+  return res.status(200).json(balanceUpdated);   
+};
+
 export default {
   newUser,
   getAllUsers,
   getUserById,
+  updateUserBalance,
 };

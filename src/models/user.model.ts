@@ -1,10 +1,10 @@
-import { ResultSetHeader } from "mysql2";
-import { IUser } from "../interfaces";
+import { ResultSetHeader, RowDataPacket } from "mysql2";
+import { IAccount, IUser } from "../interfaces";
 import connection from "./connection";
 
 const createUser = async (user: IUser): Promise<ResultSetHeader> => {
   const [result] = await connection.execute<ResultSetHeader>(
-    'INSERT INTO Users (email, password, balance) VALUES (?, ?)',
+    'INSERT INTO Users (email, password, balance) VALUES (?, ?, ?)',
     [user.email, user.password, user.balance],
   );
   return result;
@@ -26,8 +26,18 @@ const getUserById = async (id: number): Promise<IUser> => {
   return user;
 }
 
+const updateBalance = async (deposit: IAccount): Promise<ResultSetHeader> => {  
+  const { id, value } = deposit;
+  const [balanceUpdated] = await connection.execute<ResultSetHeader>(
+    `UPDATE Users SET balance = balance+ ? WHERE id=?`,
+    [value, id]
+  );
+  return balanceUpdated;
+}
+
 export default {
   createUser,
   getAllUsers,
   getUserById,
+  updateBalance,
 };

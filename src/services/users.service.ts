@@ -1,4 +1,4 @@
-import { IUser } from "../interfaces";
+import { IAccount, IUser } from "../interfaces";
 import userModel from "../models/user.model";
 
 const newUser = async (user: IUser): Promise<IUser> => {
@@ -14,8 +14,15 @@ const getUserById = async (id: number): Promise<IUser> => {
   return user as IUser;
 }
 
+const balanceUpdate = async (deposit: IAccount) => {
+  const { id, value } = deposit;
+  await userModel.updateBalance({ id, value })
+  return;
+};
+
 export default {
   newUser,
   getAllUsers,
   getUserById,
+  balanceUpdate,
 };

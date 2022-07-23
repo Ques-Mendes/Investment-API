@@ -2,9 +2,8 @@ interface IStock extends IStockWithoutC {
   cost: number;
 }
 interface IStockWithoutC {
-   stocksId: number; //CodAtivo
-  // name: string;  
-  quantity: number; //QtdAtivo
+   stocksId: number;
+  quantity: number; 
 }
 
 export {
