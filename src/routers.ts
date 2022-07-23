@@ -4,22 +4,24 @@ import stocksController from "./controller/stocks.controller";
 import usersController from "./controller/users.controller";
 import transactionValidation from "./middlewares/transaction.validation";
 import orderValidaton from "./middlewares/order.validation";
+import authMiddleware from "./middlewares/auth.middleware";
+import userValidation from "./middlewares/user.validation";
 
 const routers = Router();
 
-routers.post('/users', usersController.newUser);
-routers.get('/users', usersController.getAllUsers);
-routers.get('/users/:id', usersController.getUserById);
-routers.get('/user/orders/:id', orderController.getUserStocks);
+routers.post('/users', userValidation, usersController.newUser);
+routers.get('/users', authMiddleware, usersController.getAllUsers);
+routers.get('/users/:id', authMiddleware, usersController.getUserById);
+routers.get('/user/orders/:id', authMiddleware, orderController.getUserStocks);
 
-routers.get('/stocks', stocksController.getAllStocks);
-routers.get('/stocks/:id', stocksController.getStockById);
+routers.get('/stocks',authMiddleware, stocksController.getAllStocks);
+routers.get('/stocks/:id', authMiddleware, stocksController.getStockById);
 
-routers.post('/orders/buy', orderValidaton, orderController.createNewOrder);
-routers.post('/orders/sell', orderValidaton, orderController.sellOrder);
+routers.post('/orders/buy', authMiddleware, orderValidaton, orderController.createNewOrder);
+routers.post('/orders/sell', authMiddleware, orderValidaton, orderController.sellOrder);
 
 routers.post('/account/deposit', transactionValidation, usersController.updateUserBalance);
-routers.post('/account/withdraw', transactionValidation, usersController.withdrawBalance);
+routers.post('/account/withdraw', authMiddleware, transactionValidation, usersController.withdrawBalance);
 
 
 export default routers;
