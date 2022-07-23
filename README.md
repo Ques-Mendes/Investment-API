@@ -10,7 +10,7 @@ Antes de iniciar o desenvolvimento da aplicação, escolhi a linguagem que iria 
 
 - Typescript
   
-  - Express, nodemon, http-status-codes, joi, mysql2, dotenv, cors, express-async-errors.
+  - Express, node.js, nodemon, http-status-codes, joi, mysql2, dotenv, cors, express-async-errors.
 
 A opção por typescript se deve pelo fato de ser o conteúdo que estou aprendendo no momento na Trybe e por ter acreditado que facilitaria a manipulação dos parâmetros através do uso das interfaces.
 
@@ -138,3 +138,31 @@ VALUES
 
 </details>
 
+# Contrato dos Serviços
+
+## Requisições para investimento
+
+- O endpoint é acessível através do caminho (`/orders/buy`)
+
+<summary>O resultado retornado deverá ser conforme abaixo:</summary>
+
+<br>
+
+  - Caso os dados sejam enviados corretamente:
+  - _status http_ `201`
+```json
+{
+  "userId": 1,
+  "stocksId": 3,
+  "quantity": 10,
+  "message": "Successfully done"
+}
+```
+
+  - Caso a quantidade a ser comprada seja maior que a quantidade disponível na corretora:
+  - _status http_  `400`
+```json
+{
+  "message": "Insufficient avaiable stock to buy!"
+}
+```
