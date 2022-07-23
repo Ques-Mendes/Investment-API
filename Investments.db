@@ -6,7 +6,8 @@ USE Investments;
 CREATE TABLE Users (
   id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
   email TEXT NOT NULL,
-  password TEXT NOT NULL
+  password TEXT NOT NULL,
+  balance DECIMAL(6,2) NOT NULL
 );
 
 CREATE TABLE Stocks (
@@ -30,19 +31,19 @@ CREATE TABLE Orders (
 SET SQL_SAFE_UPDATES = 0;
 
 INSERT INTO
-  Users (email, password)
+  Users (email, password, balance)
 VALUES
-  ("xpto@gml.com", "12345X");
+  ("xpto@gml.com", "12345X", 500.00);
   
 INSERT INTO
-  Users (email, password)
+  Users (email, password, balance)
 VALUES
-  ("user1@gmail.com", "diamond");
+  ("user1@gmail.com", "diamond", 500.00);
 
 INSERT INTO
-  Users (email, password)
+  Users (email, password, balance)
 VALUES
-  ("user2@gmail.com", "gold123");
+  ("user2@gmail.com", "gold123", 500.00);
   
 INSERT INTO
   Stocks (quantity, cost)

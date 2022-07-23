@@ -17,5 +17,8 @@ routers.get('/stocks/:id', stocksController.getStockById);
 routers.post('/orders/buy', orderValidaton, orderController.createNewOrder);
 routers.post('/orders/sell', orderValidaton, orderController.sellOrder);
 
+routers.post('account/deposit');
+routers.post('account/withdraw');
+
 
 export default routers;
