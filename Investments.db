@@ -12,11 +12,8 @@ CREATE TABLE Users (
 
 CREATE TABLE Stocks (
   id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
- --  name TEXT NOT NULL,
   quantity INTEGER,
   cost DECIMAL(5, 2) NOT NULL
-  -- orderId INTEGER,
-  -- FOREIGN KEY (orderId) REFERENCES Orders (id)
 );
 
 CREATE TABLE Orders (
