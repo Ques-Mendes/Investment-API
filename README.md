@@ -6,17 +6,17 @@ Bem vindo(a) ao repositório do desafio técnico XP-Trybe desenvolvido por mim!!
 
 # Tomadas de decisões
 
-Antes de iniciar o desenvolvimento da aplicação escolhi a linguagem que iria utilizar e instalei os pacotes e libs necessários: 
+Antes de iniciar o desenvolvimento da aplicação, escolhi a linguagem que iria utilizar e instalei os pacotes e libs necessários: 
 
 - Typescript
   
   - Express, nodemon, http-status-codes, joi, mysql2, dotenv, cors, express-async-errors.
 
-A opção por typescript se deve por ter sido o conteúdo que estamos aprendendo no momento na Trybe e por ter achado que facilitaria a manipulação dos parametros através do uso das interfaces.
+A opção por typescript se deve pelo fato de ser o conteúdo que estou aprendendo no momento na Trybe e por ter acreditado que facilitaria a manipulação dos parâmetros através do uso das interfaces.
 
 Desenvolvi a aplicação em camadas (_Models_, _Service_ e _Controllers_), essa escolha foi visando manter a API organizada e com as responsabilidades divididas.
 
-Criei um pequeno banco de dados ficticio para manusear as informações através do **MySQL**, escolha esta devida pelo já uso constante do mesmo.
+Criei um pequeno banco de dados ficticio para manusear as informações através do **MySQL**, escolha devida ao uso constante do mesmo.
 
 
 # Instruções de como compilar e executar o projeto
@@ -51,7 +51,7 @@ Criei um pequeno banco de dados ficticio para manusear as informações através
 
 4. O projeto deve rodar na porta **3000** 
 
-5. Todos endpoints estão no padrão REST, basta utilizar os verbos `HTTP` que seja o adequado para cada operação
+5. Todos endpoints estão no padrão REST, basta utilizar os verbos `HTTP` adequado para cada operação
 
   - `GET` ou `POST`
 
