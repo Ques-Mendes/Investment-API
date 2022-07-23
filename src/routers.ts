@@ -2,7 +2,7 @@ import Router from "express";
 import orderController from "./controller/order.controller";
 import stocksController from "./controller/stocks.controller";
 import usersController from "./controller/users.controller";
-import depositValidation from "./middlewares/deposit.validation";
+import transactionValidation from "./middlewares/accountBalance.validation";
 import orderValidaton from "./middlewares/order.validation";
 
 const routers = Router();
@@ -18,8 +18,8 @@ routers.get('/stocks/:id', stocksController.getStockById);
 routers.post('/orders/buy', orderValidaton, orderController.createNewOrder);
 routers.post('/orders/sell', orderValidaton, orderController.sellOrder);
 
-routers.post('/account/deposit', depositValidation, usersController.updateUserBalance);
-routers.post('account/withdraw');
+routers.post('/account/deposit', transactionValidation, usersController.updateUserBalance);
+routers.post('/account/withdraw', transactionValidation, usersController.withdrawBalance);
 
 
 export default routers;

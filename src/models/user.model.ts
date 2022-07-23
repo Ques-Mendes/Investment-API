@@ -35,9 +35,29 @@ const updateBalance = async (deposit: IAccount): Promise<ResultSetHeader> => {
   return balanceUpdated;
 }
 
+const withdrawBalance = async (withdraw: IAccount): Promise<ResultSetHeader> => {
+  const { id, value } = withdraw;
+  const [balanceUpdated] = await connection.execute<ResultSetHeader>(
+    `UPDATE Users SET balance = balance- ? WHERE id=?`,
+    [value, id]
+  );
+  return balanceUpdated;
+}
+
+const getBalanceAmount = async (balance: IAccount): Promise<number> => {
+  const { id } = balance;
+  const [[{ value }]] = await connection.execute<RowDataPacket[]>(
+    `SELECT balance FROM Users WHERE id=?`,
+    [id]    
+  );
+  return value;
+}
+
 export default {
   createUser,
   getAllUsers,
   getUserById,
   updateBalance,
+  withdrawBalance,
+  getBalanceAmount,
 };

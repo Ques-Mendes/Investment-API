@@ -1,3 +1,4 @@
+import HttpException from "../helpers/http.exception";
 import { IAccount, IUser } from "../interfaces";
 import userModel from "../models/user.model";
 
@@ -20,9 +21,26 @@ const balanceUpdate = async (deposit: IAccount) => {
   return;
 };
 
+const isBalance = async (deposit: IAccount) => {
+  const { id, value } = deposit;
+  const totalBalance = await userModel.getUserById(id);  
+  if (totalBalance.balance < value) {
+    throw new HttpException(400, 'You have insufficient balance to withdraw for!' );
+  }
+  return [totalBalance];
+};
+
+const withdrawBalance = async (deposit: IAccount) => {
+  const { id, value } = deposit;
+  await isBalance(deposit);
+  await userModel.withdrawBalance({ id, value })
+  return
+};
+
 export default {
   newUser,
   getAllUsers,
   getUserById,
   balanceUpdate,
+  withdrawBalance,
 };
