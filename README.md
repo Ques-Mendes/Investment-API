@@ -203,4 +203,98 @@ VALUES
   
 <br>
   
+## Requisições feita por cliente
+  
+  - O endpoint é acessível através do caminho (`/user/orders/:id`)
+
+<details>
+<summary>O resultado retornado deverá ser conforme abaixo:</summary>
+
+<br>
+  
+  - _status http_ `200`
+```json
+ [
+  {
+    "userId": 2,
+    "stocksId": 1,
+    "quantity": 10,
+    "cost": "350.00"
+  }
+]
+```
+ <br>
+  
+  ## Requisições feitas por ativos
+  
+  - O endpoint é acessível através do caminho (`/stocks/:id`)
+
+<details>
+<summary>O resultado retornado deverá ser conforme abaixo:</summary>
+
+<br>
+  
+  - _status http_ `200`
+```json
+  {
+    "id": 2,
+    "quantity": 100,
+    "cost": "350.00"
+  }
+```
+  <br>
+  
+  
+  ## Requisição para depósito em conta
+  
+   - O endpoint é acessível através do caminho (`/account/deposit`)
+  
+<details>
+<summary>O resultado retornado deverá ser conforme abaixo:</summary>
+
+<br>
+  
+  - _status http_ `200`
+  
+  
+  - Caso a quantidade a ser depositada seja negativa ou igual a zero:
+  - _status http_  `400`
+```json
+{
+  "message": "Invalid value!"
+} 
+```
+  
+  <br>
+  
+  ## Requisição para saque da conta
+  
+  - O endpoint é acessível através do caminho (`/account/withdraw`)
+  
+<details>
+<summary>O resultado retornado deverá ser conforme abaixo:</summary>
+
+<br>
+  
+  - _status http_ `200`
+  
+  
+  - Caso a quantidade a ser sacada seja negativa ou igual a zero:
+  - _status http_  `400`
+```json
+{
+  "message": "Invalid value!"
+} 
+```
+
+  - Caso a quantidade a ser sacada seja maior que o saldo em conta:
+  - _status http_  `400`
+```json
+{
+  "message": "You have insufficient balance to withdraw from!"
+}
+```
+  
+  <br>
+  
   
