@@ -4,8 +4,8 @@ import connection from "./connection";
 
 const createUser = async (user: IUser): Promise<ResultSetHeader> => {
   const [result] = await connection.execute<ResultSetHeader>(
-    'INSERT INTO Users (email, password) VALUES (?, ?)',
-    [user.email, user.password],
+    'INSERT INTO Users (email, password, balance) VALUES (?, ?)',
+    [user.email, user.password, user.balance],
   );
   return result;
 };
