@@ -5,10 +5,9 @@ export interface IInvest {
 }
 
 export interface IInvestment extends IInvest {
-  id: number;  
+  id: number;
 }
 
-export interface IInvestmentReturn extends  IInvestment{
+export interface IInvestmentReturn extends IInvestment {
   message: string;
 }
-  

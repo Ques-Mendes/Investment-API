@@ -1,15 +1,10 @@
-interface IUser {
+export interface IUser {
   id?: number;
   email: string;
   password: string;
   balance: number;
 }
 
-interface IUserId {
+export interface IUserId {
   id: number,
 }
-
-export {
-  IUser,
-  IUserId,
-};

@@ -1,12 +1,7 @@
-interface IStock extends IStockWithoutC { 
+export interface IStock extends IStockWithoutC {
   cost: number;
 }
-interface IStockWithoutC {
-   stocksId: number;
-  quantity: number; 
+export interface IStockWithoutC {
+  stocksId: number;
+  quantity: number;
 }
-
-export {
-  IStock,
-  IStockWithoutC,
-};

@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import HttpException from "../helpers/http.exception";
-import stocksService from "../services/stocks.service"
+import { Request, Response } from 'express';
+import HttpException from '../helpers/http.exception';
+import stocksService from '../services/stocks.service';
 import 'express-async-errors';
 
 const getAllStocks = async (_req: Request, res: Response): Promise<Response> => {
@@ -20,4 +20,4 @@ const getStockById = async (req: Request, res: Response) => {
 export default {
   getAllStocks,
   getStockById,
-}
+};
