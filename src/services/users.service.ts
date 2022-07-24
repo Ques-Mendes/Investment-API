@@ -1,10 +1,15 @@
 import HttpException from "../helpers/http.exception";
+import { generateJWTToken } from "../helpers/JWT";
 import { IAccount, IUser } from "../interfaces";
 import userModel from "../models/user.model";
 
-const newUser = async (user: IUser): Promise<IUser> => {
+const newUser = async (user: IUser): Promise<IUser> => {   
+  const userEmail = await userModel.getUserByEmail(user);  
+   if (userEmail.length) {
+    throw new HttpException(400, "User already exists!");    
+  }
   const { insertId } = await userModel.createUser(user);
-  const userCreated = { id: insertId, ...user, };
+  const userCreated = { id: insertId, ...user };
   return userCreated;
 };
 

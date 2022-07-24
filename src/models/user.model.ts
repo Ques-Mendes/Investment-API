@@ -6,10 +6,20 @@ const createUser = async (user: IUser): Promise<ResultSetHeader> => {
   const [result] = await connection.execute<ResultSetHeader>(
     'INSERT INTO Users (email, password, balance) VALUES (?, ?, ?)',
     [user.email, user.password, user.balance],
-  );
+  );  
   return result;
 };
 
+const getUserByEmail = async (user: IUser): Promise<IUser[]> => {
+  const { email } = user;
+  const [userEmail] = await connection.execute(
+    'SELECT email FROM Users WHERE email=?',
+    [email]
+  );
+  console.log('email', email);
+  
+  return userEmail as IUser[];
+}
 const getAllUsers = async (): Promise<IUser[]> => {
   const [rows] = await connection.execute(
     'SELECT * FROM Users',
@@ -60,4 +70,5 @@ export default {
   updateBalance,
   withdrawBalance,
   getBalanceAmount,
+  getUserByEmail
 };

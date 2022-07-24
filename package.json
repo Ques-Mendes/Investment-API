@@ -20,9 +20,11 @@
   },
   "homepage": "https://github.com/Ques-Mendes/desafioXP#readme",
   "dependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.12",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/restify-errors": "^4.3.4",
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",

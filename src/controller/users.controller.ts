@@ -1,14 +1,13 @@
 import { Request, Response } from "express";
 import HttpException from "../helpers/http.exception";
 import usersService from "../services/users.service";
-import 'express-async-errors';
+import { generateJWTToken } from "../helpers/JWT";
+import "express-async-errors";
 
 const newUser = async (req: Request, res: Response): Promise<Response> => {  
   const user = await usersService.newUser(req.body);
-  if (user) {
-    throw new HttpException(404, 'Bad Request');    
-  }
-  return res.status(201).json(user);
+  const token = generateJWTToken(user);
+  return res.status(201).json(token);
 }
 
 const getAllUsers = async (_req: Request, res: Response): Promise<Response> => {
