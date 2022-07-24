@@ -10,7 +10,7 @@ Antes de iniciar o desenvolvimento da aplicação, escolhi a linguagem que iria 
 
 - Typescript
   
-  - Express, node.js, nodemon, http-status-codes, joi, mysql2, dotenv, cors, express-async-errors.
+  - Express, node.js, nodemon, http-status-codes, joi, mysql2, dotenv, cors, express-async-errors, JWT, eslint.
 
 A opção por typescript se deve pelo fato de ser o conteúdo que estou aprendendo no momento na Trybe e por ter acreditado que facilitaria a manipulação dos parâmetros através do uso das interfaces.
 
