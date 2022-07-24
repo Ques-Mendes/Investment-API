@@ -15,11 +15,10 @@ const getUserByEmail = async (user: IUser): Promise<IUser[]> => {
   const [userEmail] = await connection.execute(
     'SELECT email FROM Users WHERE email=?',
     [email]
-  );
-  console.log('email', email);
-  
+  );  
   return userEmail as IUser[];
-}
+};
+
 const getAllUsers = async (): Promise<IUser[]> => {
   const [rows] = await connection.execute(
     'SELECT * FROM Users',

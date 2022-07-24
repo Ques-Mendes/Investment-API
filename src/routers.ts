@@ -6,8 +6,11 @@ import transactionValidation from "./middlewares/transaction.validation";
 import orderValidaton from "./middlewares/order.validation";
 import authMiddleware from "./middlewares/auth.middleware";
 import userValidation from "./middlewares/user.validation";
+import loginController from "./controller/login.controller";
+import loginValidation from "./middlewares/login.validation";
 
 const routers = Router();
+routers.post('/login', loginValidation, loginController.login);
 
 routers.post('/users', userValidation, usersController.newUser);
 routers.get('/users', authMiddleware, usersController.getAllUsers);

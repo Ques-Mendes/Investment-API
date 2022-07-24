@@ -1,17 +1,15 @@
-// const userService = require('../services/userService.js');
-// const { STATUS_OK } = require('../helpers/statusHTTP');
+import HttpException from "../helpers/http.exception";
+import { generateJWTToken } from "../helpers/JWT";
+import loginService from "../services/login.service"
+import "express-async-errors";
+import { Request, Response } from "express";
 
-import usersService from "../services/users.service"
+const login = async (req: Request, res: Response) => {
+  const user = await loginService.userLogin(req.body); 
+  const token = generateJWTToken({ ...user[0] });
+  return res.status(200).json({ token });  
+};
 
-// const login = async (req, res) => {
-//   const { email, password } = req.body;
-//   const token = await userService.getUser({ email, password });
-//   return res.status(STATUS_OK).json({ token });
-// };
-
-// module.exports = { login };
-
-// const login = async (req: Request, res: Response): Promise<Response> => {
-//   const { email, id } = req.body
-//   const user = await usersService.getUser(id)
-// }
+export default {
+  login,
+};
