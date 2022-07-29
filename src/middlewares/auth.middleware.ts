@@ -8,7 +8,7 @@ const authMiddleware = async (req: Request, res: Response, next: NextFunction): 
   if (!user) {
     throw new HttpException(401, 'Unauthorized');
   }
-  res.locals.user = user;
+  res.locals.payload = user;
   next();
 };
 

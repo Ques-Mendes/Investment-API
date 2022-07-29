@@ -13,7 +13,7 @@ const routers = Router();
 routers.post('/login', loginValidation, loginController.login);
 
 routers.post('/users', userValidation, usersController.newUser);
-routers.get('/users', authMiddleware, usersController.getAllUsers);
+// routers.get('/users', authMiddleware, usersController.getAllUsers);
 routers.get('/users/:id', authMiddleware, usersController.getUserById);
 routers.get('/user/orders/:id', authMiddleware, orderController.getUserStocks);
 

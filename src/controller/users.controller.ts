@@ -17,6 +17,12 @@ const getAllUsers = async (_req: Request, res: Response): Promise<Response> => {
 
 const getUserById = async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
+  const { id: idToken } = res.locals.payload.user;
+  console.log(res.locals.user);
+  console.log(idToken);
+  if (id !== idToken) {
+    throw new HttpException(401, 'Unauthorized');
+  }
   const user = await usersService.getUserById(id);
   if (!user) {
     throw new HttpException(404, 'Could not found user!');
