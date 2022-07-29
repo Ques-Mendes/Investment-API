@@ -1,5 +1,5 @@
 import HttpException from '../helpers/http.exception';
-import { IAccount, IUser } from '../interfaces';
+import { IAccount, IUser, IUserId } from '../interfaces';
 import userModel from '../models/user.model';
 
 const newUser = async (user: IUser): Promise<IUser> => {
@@ -21,6 +21,10 @@ const getUserById = async (id: number): Promise<IUser> => {
 
 const balanceUpdate = async (deposit: IAccount) => {
   const { id, value } = deposit;
+  const userAccount = await getUserById(id);
+  if (!userAccount) {
+    throw new HttpException(400, 'User do not exists');
+  }
   await userModel.updateBalance({ id, value });
 };
 

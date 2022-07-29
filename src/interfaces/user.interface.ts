@@ -8,3 +8,7 @@ export interface IUser {
 export interface IUserId {
   id: number,
 }
+
+export interface IUserBalance extends IUserId {
+  balance: number;
+}

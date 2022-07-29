@@ -25,6 +25,7 @@ const getUserById = async (req: Request, res: Response) => {
 };
 
 const updateUserBalance = async (req: Request, res: Response) => {
+  console.log(req.body);
   const balanceToUpdate = req.body;
   const balanceUpdated = await usersService.balanceUpdate(balanceToUpdate);
   return res.status(200).json(balanceUpdated);
