@@ -296,6 +296,63 @@ VALUES
 ```
   
   <br>
+  ## Requisição para saldo da conta
   
+  - O endpoint é acessível através do caminho (`/account/:id`)
   
+<details>
+<summary>O resultado retornado deverá ser conforme abaixo:</summary>
 
+<br>
+  
+  - _status hhtp_ `200`
+```json
+{
+  "id": 1,
+  "balance": "500.00"
+}
+```
+
+  -Caso o cliente não seja autorizado:
+  - _status hhtp_ `401`
+```json
+{
+  "message": "Unauthorized"
+}
+```
+
+<br>
+
+  ## Endpoint que lista as ações e suas respectivas quantidades vendidas  
+  
+  - O endpoint é acessível através do caminho (`/orders`)
+  
+<details>
+<summary>O resultado retornado deverá ser conforme abaixo:</summary>
+
+<br>
+  
+  - _status hhtp_ `200`
+```json
+[
+  {
+    "id": 1,
+    "userId": 1,
+    "stocksId": 3,
+    "quantity": 10
+  },
+  {
+    "id": 2,
+    "userId": 3,
+    "stocksId": 2,
+    "quantity": 20
+  },
+  {
+    "id": 3,
+    "userId": 2,
+    "stocksId": 1,
+    "quantity": 30
+  }
+]
+```
+<br>
