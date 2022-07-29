@@ -10,16 +10,14 @@ const newUser = async (req: Request, res: Response): Promise<Response> => {
   return res.status(201).json(token);
 };
 
-const getAllUsers = async (_req: Request, res: Response): Promise<Response> => {
-  const users = await usersService.getAllUsers();
-  return res.status(200).json(users);
-};
+// const getAllUsers = async (_req: Request, res: Response): Promise<Response> => {
+//   const users = await usersService.getAllUsers();
+//   return res.status(200).json(users);
+// };
 
 const getUserById = async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
   const { id: idToken } = res.locals.payload.user;
-  console.log(res.locals.user);
-  console.log(idToken);
   if (id !== idToken) {
     throw new HttpException(401, 'Unauthorized');
   }
@@ -30,14 +28,18 @@ const getUserById = async (req: Request, res: Response) => {
   return res.status(200).json(user);
 };
 
-// const getUserWithBalance = async (req: Request, res: Response) => {
-//   const id = parseInt(req.params.id);
-//   const user = await usersService.getUserWithBalance(id);
-//   if (!user) {
-//     throw new HttpException(404, 'Could not found user!');
-//   }
-//   return res.status(200).json(user);
-// };
+const getUserWithBalance = async (req: Request, res: Response) => {
+  const id = parseInt(req.params.id);
+  const { id: idToken } = res.locals.payload.user;
+  if (id !== idToken) {
+    throw new HttpException(401, 'Unauthorized');
+  }
+  const user = await usersService.getUserWithBalance(id);
+  if (!user) {
+    throw new HttpException(404, 'Could not found user!');
+  }
+  return res.status(200).json(user);
+};
 
 const updateUserBalance = async (req: Request, res: Response) => {
   const balanceToUpdate = req.body;
@@ -53,9 +55,9 @@ const withdrawBalance = async (req: Request, res: Response) => {
 
 export default {
   newUser,
-  getAllUsers,
+  // getAllUsers,
   getUserById,
   updateUserBalance,
   withdrawBalance,
-  // getUserWithBalance,
+  getUserWithBalance,
 };

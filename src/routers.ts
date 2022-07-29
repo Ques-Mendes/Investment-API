@@ -13,7 +13,7 @@ const routers = Router();
 routers.post('/login', loginValidation, loginController.login);
 
 routers.post('/users', userValidation, usersController.newUser);
-// routers.get('/users', authMiddleware, usersController.getAllUsers);
+// routers.get('/users', authMiddleware, usersController.getAllUsers); Not necessary
 routers.get('/users/:id', authMiddleware, usersController.getUserById);
 routers.get('/user/orders/:id', authMiddleware, orderController.getUserStocks);
 
@@ -24,7 +24,7 @@ routers.get('/orders', authMiddleware, orderController.getAllOrders);
 routers.post('/orders/buy', authMiddleware, orderValidaton, orderController.createNewOrder);
 routers.post('/orders/sell', authMiddleware, orderValidaton, orderController.sellOrder);
 
-// routers.get('/account/:id', authMiddleware, usersController.getUserWithBalance); // ??????
+routers.get('/account/:id', authMiddleware, usersController.getUserWithBalance);
 routers.post('/account/deposit', transactionValidation, usersController.updateUserBalance);
 routers.post('/account/withdraw', authMiddleware, transactionValidation, usersController.withdrawBalance);
 

@@ -1,5 +1,5 @@
 import HttpException from '../helpers/http.exception';
-import { IAccount, IUser } from '../interfaces';
+import { IAccount, IUser, IUserBalance } from '../interfaces';
 import userModel from '../models/user.model';
 
 const newUser = async (user: IUser): Promise<IUser> => {
@@ -12,18 +12,20 @@ const newUser = async (user: IUser): Promise<IUser> => {
   return userCreated;
 };
 
-const getAllUsers = (): Promise<IUser[]> => userModel.getAllUsers();
+// const getAllUsers = (): Promise<IUser[]> => userModel.getAllUsers();
 
 const getUserById = async (id: number): Promise<IUser> => {
   const user = await userModel.getUserById(id);
   return user as IUser;
 };
 
-// const getUserWithBalance = async (user: IUserBalance): Promise<IUserBalance> => {
-//   const { id, balance } = user;
-//   const result = await userModel.getUserWithBalance(id);
-//   return user as IUserBalance;
-// };
+const getUserWithBalance = async (id: number): Promise<IUserBalance> => {
+  const userWithBalance = await userModel.getUserWithBalance(id);
+  if (!userWithBalance) {
+    throw new HttpException(400, 'Bad Request');
+  }
+  return userWithBalance as IUserBalance;
+};
 
 const balanceUpdate = async (deposit: IAccount) => {
   const { id, value } = deposit;
@@ -55,9 +57,9 @@ const withdrawBalance = async (deposit: IAccount) => {
 
 export default {
   newUser,
-  getAllUsers,
+  // getAllUsers,
   getUserById,
   balanceUpdate,
   withdrawBalance,
-  // getUserWithBalance,
+  getUserWithBalance,
 };

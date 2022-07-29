@@ -1,5 +1,5 @@
 import { ResultSetHeader, RowDataPacket } from 'mysql2';
-import { IAccount, IUser } from '../interfaces';
+import { IAccount, IUser, IUserBalance } from '../interfaces';
 import connection from './connection';
 
 const createUser = async (user: IUser): Promise<ResultSetHeader> => {
@@ -19,12 +19,12 @@ const getUserByEmail = async (user: IUser): Promise<IUser[]> => {
   return userEmail as IUser[];
 };
 
-const getAllUsers = async (): Promise<IUser[]> => {
-  const [rows] = await connection.execute(
-    'SELECT * FROM Users',
-  );
-  return rows as IUser[];
-};
+// const getAllUsers = async (): Promise<IUser[]> => {
+//   const [rows] = await connection.execute(
+//     'SELECT * FROM Users',
+//   );
+//   return rows as IUser[];
+// };
 
 const getUserById = async (id: number): Promise<IUser> => {
   const result = await connection.execute('SELECT * FROM Users WHERE id=?', [id]);
@@ -32,14 +32,16 @@ const getUserById = async (id: number): Promise<IUser> => {
   const [user] = rows as IUser[];
   return user;
 };
-// const getUserWithBalance = async (user: IUserBalance): Promise<IUserBalance> => {
-//   const { id, balance } = user;
-//   const [result] = await connection.execute('SELECT balance FROM Users WHERE id=?',
-//  [balance, id]);
-//   const rows = result;
-//   const [userWithBalance] = rows as IUserBalance[];
-//   return userWithBalance;
-// };
+
+const getUserWithBalance = async (id: number): Promise<IUserBalance> => {
+  const result = await connection.execute(
+    'SELECT id, balance FROM Users WHERE id=?',
+    [id],
+  );
+  const [rows] = result;
+  const [userWithBalance] = rows as IUserBalance[];
+  return userWithBalance;
+};
 
 const updateBalance = async (deposit: IAccount): Promise<ResultSetHeader> => {
   const { id, value } = deposit;
@@ -67,11 +69,11 @@ const getBalanceAmount = async (balance: IAccount): Promise<number> => {
 
 export default {
   createUser,
-  getAllUsers,
+  // getAllUsers,
   getUserById,
   updateBalance,
   withdrawBalance,
   getBalanceAmount,
   getUserByEmail,
-  // getUserWithBalance,
+  getUserWithBalance,
 };
