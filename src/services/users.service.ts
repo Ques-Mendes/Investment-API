@@ -39,6 +39,10 @@ const isBalance = async (deposit: IAccount) => {
 
 const withdrawBalance = async (deposit: IAccount) => {
   const { id, value } = deposit;
+  const userAccount = await getUserById(id);
+  if (!userAccount) {
+    throw new HttpException(400, 'User do not exists');
+  }
   await isBalance(deposit);
   await userModel.withdrawBalance({ id, value });
 };
