@@ -1,5 +1,5 @@
 import HttpException from '../helpers/http.exception';
-import { IAccount, IUser, IUserId } from '../interfaces';
+import { IAccount, IUser } from '../interfaces';
 import userModel from '../models/user.model';
 
 const newUser = async (user: IUser): Promise<IUser> => {
@@ -18,6 +18,12 @@ const getUserById = async (id: number): Promise<IUser> => {
   const user = await userModel.getUserById(id);
   return user as IUser;
 };
+
+// const getUserWithBalance = async (user: IUserBalance): Promise<IUserBalance> => {
+//   const { id, balance } = user;
+//   const result = await userModel.getUserWithBalance(id);
+//   return user as IUserBalance;
+// };
 
 const balanceUpdate = async (deposit: IAccount) => {
   const { id, value } = deposit;
@@ -53,4 +59,5 @@ export default {
   getUserById,
   balanceUpdate,
   withdrawBalance,
+  // getUserWithBalance,
 };

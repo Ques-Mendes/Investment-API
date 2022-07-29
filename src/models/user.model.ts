@@ -32,6 +32,14 @@ const getUserById = async (id: number): Promise<IUser> => {
   const [user] = rows as IUser[];
   return user;
 };
+// const getUserWithBalance = async (user: IUserBalance): Promise<IUserBalance> => {
+//   const { id, balance } = user;
+//   const [result] = await connection.execute('SELECT balance FROM Users WHERE id=?',
+//  [balance, id]);
+//   const rows = result;
+//   const [userWithBalance] = rows as IUserBalance[];
+//   return userWithBalance;
+// };
 
 const updateBalance = async (deposit: IAccount): Promise<ResultSetHeader> => {
   const { id, value } = deposit;
@@ -65,4 +73,5 @@ export default {
   withdrawBalance,
   getBalanceAmount,
   getUserByEmail,
+  // getUserWithBalance,
 };

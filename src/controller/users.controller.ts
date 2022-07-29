@@ -24,8 +24,16 @@ const getUserById = async (req: Request, res: Response) => {
   return res.status(200).json(user);
 };
 
+// const getUserWithBalance = async (req: Request, res: Response) => {
+//   const id = parseInt(req.params.id);
+//   const user = await usersService.getUserWithBalance(id);
+//   if (!user) {
+//     throw new HttpException(404, 'Could not found user!');
+//   }
+//   return res.status(200).json(user);
+// };
+
 const updateUserBalance = async (req: Request, res: Response) => {
-  console.log(req.body);
   const balanceToUpdate = req.body;
   const balanceUpdated = await usersService.balanceUpdate(balanceToUpdate);
   return res.status(200).json(balanceUpdated);
@@ -43,4 +51,5 @@ export default {
   getUserById,
   updateUserBalance,
   withdrawBalance,
+  // getUserWithBalance,
 };

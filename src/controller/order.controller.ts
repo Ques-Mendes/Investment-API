@@ -24,8 +24,13 @@ const sellOrder = async (req: Request, res: Response) => {
   return res.status(200).json(orderSold);
 };
 
+const getAllOrders = async (_req: Request, res: Response): Promise<Response> => {
+  const orders = await ordersService.getAllOrders();
+  return res.status(200).json(orders);
+};
 export default {
   getUserStocks,
   createNewOrder,
   sellOrder,
+  getAllOrders,
 };

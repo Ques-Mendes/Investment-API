@@ -4,7 +4,7 @@ import Joi from 'joi';
 const orderDTO = Joi.object().keys({
   userId: Joi.number().required().required(),
   stocksId: Joi.number().required().required(),
-  quantity: Joi.number().required().required(),
+  quantity: Joi.number().min(1).required().required(),
 });
 
 const orderValidaton = async (req: Request, res: Response, next: NextFunction) => {

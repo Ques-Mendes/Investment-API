@@ -55,15 +55,30 @@ const updateUserStock = async (order: IInvest): Promise<ResultSetHeader> => {
   return orderUpdated;
 };
 
-const getOrderToSell = async (order: IInvest): Promise<number> => {
+const getOrderToSell = async (order: IInvest): Promise<RowDataPacket[]> => {
   const { userId, stocksId } = order;
-  const [[{ quantity }]] = await connection.execute<RowDataPacket[]>(
+  const [quantity] = await connection.execute<RowDataPacket[]>(
     'SELECT quantity FROM Orders WHERE stocksId = ? AND userId = ?',
     [stocksId, userId],
   );
   return quantity;
 };
 
+const verifyUser = async (order: IInvest): Promise<RowDataPacket[]> => {
+  const { userId } = order;
+  const [user] = await connection.execute<RowDataPacket[]>(
+    'SELECT userId FROM Orders WHERE userId=?',
+    [userId],
+  );
+  return user;
+};
+
+const getAllOrders = async (): Promise<IInvest[]> => {
+  const [rows] = await connection.execute(
+    'SELECT * FROM Orders',
+  );
+  return rows as IInvest[];
+};
 export default {
   getUserStocks,
   createOrder,
@@ -71,4 +86,6 @@ export default {
   isOrder,
   updateUserStock,
   getOrderToSell,
+  verifyUser,
+  getAllOrders,
 };

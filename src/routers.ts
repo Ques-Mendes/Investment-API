@@ -20,9 +20,11 @@ routers.get('/user/orders/:id', authMiddleware, orderController.getUserStocks);
 routers.get('/stocks', authMiddleware, stocksController.getAllStocks);
 routers.get('/stocks/:id', authMiddleware, stocksController.getStockById);
 
+routers.get('/orders', authMiddleware, orderController.getAllOrders);
 routers.post('/orders/buy', authMiddleware, orderValidaton, orderController.createNewOrder);
 routers.post('/orders/sell', authMiddleware, orderValidaton, orderController.sellOrder);
 
+// routers.get('/account/:id', authMiddleware, usersController.getUserWithBalance); // ??????
 routers.post('/account/deposit', transactionValidation, usersController.updateUserBalance);
 routers.post('/account/withdraw', authMiddleware, transactionValidation, usersController.withdrawBalance);
 

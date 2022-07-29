@@ -11,17 +11,27 @@ const getUserStocks = async (id: number): Promise<IOrder[]> => {
   return orders as IOrder[];
 };
 
+const getAllOrders = async (): Promise<IInvest[]> => orderModel.getAllOrders();
+
 const isAvaiable = async (stock: IStockWithoutC) => {
   const { stocksId, quantity } = stock;
   const stockIsAvaiable = await stocksService.getStockById(stocksId);
-  if (stockIsAvaiable.quantity < quantity) {
-    throw new HttpException(400, 'Insufficient avaiable stock to buy!');
+  if (!stockIsAvaiable || stockIsAvaiable.quantity < quantity) {
+    throw new HttpException(400, 'Bad request!');
   }
   return [stockIsAvaiable.quantity, stockIsAvaiable.cost];
 };
 
+const isUser = async (order: IInvest) => {
+  const userExists = await orderModel.verifyUser(order);
+  if (!userExists.length) {
+    throw new HttpException(400, 'Bad request!');
+  }
+};
+
 const newOrder = async (order: IInvestment) => {
   const { stocksId, quantity } = order;
+  await isUser(order);
   await isAvaiable({ stocksId, quantity });
   await stockModel.updateStock({ quantity, stocksId });
   const isOrder = await orderModel.isOrder(order);
@@ -35,14 +45,17 @@ const newOrder = async (order: IInvestment) => {
 
 const isQuantity = async (order: IInvest) => {
   const { quantity } = order;
-  const stockIsAvaiable = await orderModel.getOrderToSell(order);
-  if (stockIsAvaiable < quantity) {
+  const result = await orderModel.getOrderToSell(order);
+  if (!result.length) {
+    throw new HttpException(400, 'Bad Request!');
+  }
+  if (result[0].quantity < quantity) {
     throw new HttpException(400, 'You have insufficient stock to sell!');
   }
-  return [stockIsAvaiable];
 };
 
 const sellOrder = async (order: IInvestment) => {
+  await isUser(order);
   await isQuantity(order);
   // await stockModel.updateStock({ stocksId, quantity }); ? Don't know who is buying the stock ?
   await orderModel.updateUserStock(order);
@@ -53,4 +66,5 @@ export default {
   getUserStocks,
   newOrder,
   sellOrder,
+  getAllOrders,
 };
