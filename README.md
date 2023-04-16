@@ -296,6 +296,7 @@ VALUES
 ```
   
   <br>
+  
   ## Requisição para saldo da conta
   
   - O endpoint é acessível através do caminho (`/account/:id`)
